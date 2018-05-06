@@ -1,5 +1,11 @@
+.ui-widget,
+    .ui-widget .ui-widget {
+    font-size: 14px !important;
+}
+
 .divTopo{
 	padding-bottom: 5px;
+	
 }
 
 #login-dialog{
@@ -16,7 +22,7 @@
 	padding: 10px;
 }
 
-.h1{
+h1{
 	font-size: 24px;
 	font-weight: 600;
 	padding: 0px;
@@ -30,3 +36,24 @@
 .ui.panelgrid td{
 	height: 34px;
 }
+.ajax-status{
+	position: fixed;
+	top: 1px;
+	right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
