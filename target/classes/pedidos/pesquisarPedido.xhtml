@@ -1,0 +1,110 @@
+<ui:composition template="/WEB-INF/templates/modelo.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="titulo">Pesquisa de Produto</ui:define>
+	<ui:define name="corpo">
+		<h:form>
+			<h1>Pesquisa de Pedidos</h1>
+			<p:toolbar style="margin-top:20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" id="botaoPesquisa" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" columnClasses="rotulo ,campo"
+				style="width: 100%; margin-top: 20px">
+				<p:outputLabel value="Número" />
+				<h:panelGroup>
+					<p:inputText size="10" />
+					 a
+					<p:inputText size="10" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Data de criação" />
+				<h:panelGroup>
+					<p:calendar size="10" pattern="dd/MM/yyyy" />
+					a
+					<p:calendar size="10" pattern="dd/MM/yyyy" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Vendedor" />
+				<p:inputText size="40" />
+
+				<p:outputLabel value="Vendedor" />
+				<p:inputText size="40" />
+
+				<p:outputLabel value="Status" />
+				<p:selectManyCheckbox>
+					<f:selectItem itemLabel="Orçamento" itemValue="" />
+					<f:selectItem itemLabel="Emitido" itemValue="" />
+					<f:selectItem itemLabel="Cancelado" itemValue="" />
+				</p:selectManyCheckbox>
+			</p:panelGrid>
+
+			<p:dataTable id="tabelaPedidos"
+				value="#{pesquisaPedidosBean.pedidosFiltrados}" var="cursorPedidos"
+				style="margin-top:20px" emptyMessage="Nenhum pedido encontrado."
+				rows="10" paginator="true" paginatorPosition="bottom">
+
+				<p:column headerText="Número" style="text-align:center; width:100px">
+					<h:outputText value="123" />
+				</p:column>
+
+				<p:column headerText="Cliente" width="200">
+					<h:outputText value="Supermercado Qualquer" />
+				</p:column>
+
+				<p:column headerText="Vendedor" width="200">
+					<h:outputText value="Rodrigo Moreira Carvalho" />
+				</p:column>
+
+				<p:column headerText="Data de criação" width="100">
+					<h:outputText value="05/06/2018" />
+				</p:column>
+
+				<p:column headerText="Valor total" width="100" style="text-align:right" >
+					<h:outputText value="R$ 125,50" />
+				</p:column> 
+
+				<p:column headerText="Status" width="100">
+					<h:outputText value="Emitido" />
+				</p:column>
+
+				<p:column headerText="Opções" style="text-align:center" width="100">
+					<p:column headerText="Opções" style="text-align:center" width="150">
+						<p:button icon="ui-icon-pencil" title="Editar" />
+						<p:commandButton icon="ui-icon-trash" title="Remover" />
+					</p:column>
+				</p:column>
+
+			</p:dataTable>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

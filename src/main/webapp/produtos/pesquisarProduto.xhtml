@@ -1,0 +1,60 @@
+<ui:composition template="/WEB-INF/templates/modelo.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="titulo">Pesquisa de Produto</ui:define>
+	<ui:define name="corpo">
+	<h:form>
+		<h1>Pesquisa de Produtos</h1>
+		<p:toolbar style="margin-top:20px">
+			<p:toolbarGroup>
+				<p:commandButton value="Pesquisar" id="botaoPesquisa"/>
+			</p:toolbarGroup>
+			<p:toolbarGroup align="right">
+				<p:button value="Novo" outcome="/produtos/cadastrarProduto.xhtml"/>
+			</p:toolbarGroup >
+		</p:toolbar>
+		
+		<p:panelGrid columns="2" columnClasses="rotulo ,campo" style="width: 100%; margin-top: 20px">
+			<p:outputLabel value="SKU" for="sku"/>
+			<p:inputText id="sku" size="20" maxlength="20"/>
+			
+			<p:outputLabel value="Nome" for="nome"/>
+			<p:inputText id="nome" size="80" maxlength="80"/>
+		</p:panelGrid>
+		
+		<p:dataTable id="tabela" value="#{pesquisaProdutosBean.produtosFiltrados}" var="cursorProdutos"
+			emptyMessage="Nenhum produto encontrado." rows="10" paginator="true" 
+			paginatorPosition="bottom" style="margin-top:20px">
+			
+			<p:column headerText="SKU" style="text-align:center" width="100">
+				<h:outputText value="123"/>
+			</p:column>
+			
+			<p:column headerText="Nome" >
+				<h:outputText value="Bala de morango"/>
+			</p:column>
+			
+			<p:column headerText="Categoria">
+				<h:outputText value="Doces - balas e chicletes" />
+			</p:column>
+			
+			<p:column headerText="Valor Unitário" width="150" style="text-align:right">
+				<h:outputText value="R$ 1,20" />
+			</p:column>
+			
+			<p:column headerText="Estque" style="text-align:center" width="100">
+				<h:outputText value="98" />
+			</p:column>
+			
+			<p:column headerText="Opções" style="text-align:center" width="150">
+				<p:button icon="ui-icon-pencil" title="Editar"/>
+				<p:commandButton icon="ui-icon-trash" title="Remover"/>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	</ui:define>
+</ui:composition>

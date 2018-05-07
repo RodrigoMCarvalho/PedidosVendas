@@ -42,7 +42,9 @@ h1{
 	right: 10px;
 }
 
-
+.ui-selectmanycheckbox td label{
+	padding-right: 10px;
+}
 
 
 
