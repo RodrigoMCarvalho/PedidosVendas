@@ -7,54 +7,70 @@
 
 	<ui:define name="titulo">Pesquisa de Produto</ui:define>
 	<ui:define name="corpo">
-	<h:form>
-		<h1>Pesquisa de Produtos</h1>
-		<p:toolbar style="margin-top:20px">
-			<p:toolbarGroup>
-				<p:commandButton value="Pesquisar" id="botaoPesquisa"/>
-			</p:toolbarGroup>
-			<p:toolbarGroup align="right">
-				<p:button value="Novo" outcome="/produtos/cadastrarProduto.xhtml"/>
-			</p:toolbarGroup >
-		</p:toolbar>
-		
-		<p:panelGrid columns="2" columnClasses="rotulo ,campo" style="width: 100%; margin-top: 20px">
-			<p:outputLabel value="SKU" for="sku"/>
-			<p:inputText id="sku" size="20" maxlength="20"/>
-			
-			<p:outputLabel value="Nome" for="nome"/>
-			<p:inputText id="nome" size="80" maxlength="80"/>
-		</p:panelGrid>
-		
-		<p:dataTable id="tabela" value="#{pesquisaProdutosBean.produtosFiltrados}" var="cursorProdutos"
-			emptyMessage="Nenhum produto encontrado." rows="10" paginator="true" 
-			paginatorPosition="bottom" style="margin-top:20px">
-			
-			<p:column headerText="SKU" style="text-align:center" width="100">
-				<h:outputText value="123"/>
-			</p:column>
-			
-			<p:column headerText="Nome" >
-				<h:outputText value="Bala de morango"/>
-			</p:column>
-			
-			<p:column headerText="Categoria">
-				<h:outputText value="Doces - balas e chicletes" />
-			</p:column>
-			
-			<p:column headerText="Valor Unitário" width="150" style="text-align:right">
-				<h:outputText value="R$ 1,20" />
-			</p:column>
-			
-			<p:column headerText="Estque" style="text-align:center" width="100">
-				<h:outputText value="98" />
-			</p:column>
-			
-			<p:column headerText="Opções" style="text-align:center" width="150">
-				<p:button icon="ui-icon-pencil" title="Editar"/>
-				<p:commandButton icon="ui-icon-trash" title="Remover"/>
-			</p:column>
-		</p:dataTable>
-	</h:form>
+		<h:form>
+			<h1>Pesquisa de Produtos</h1>
+			<p:toolbar style="margin-top:20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" id="botaoPesquisa" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" outcome="/produtos/cadastrarProduto.xhtml" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" columnClasses="rotulo ,campo"
+				style="width: 100%; margin-top: 20px">
+				<p:outputLabel value="SKU" for="sku" />
+				<p:inputText id="sku" size="20" maxlength="20" />
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="80" maxlength="80" />
+			</p:panelGrid>
+
+			<p:dataTable id="tabela"
+				value="#{pesquisaProdutosBean.produtosFiltrados}"
+				var="cursorProdutos" emptyMessage="Nenhum produto encontrado."
+				rows="10" paginator="true" paginatorPosition="bottom"
+				style="margin-top:20px">
+
+				<p:column headerText="SKU" style="text-align:center" width="100">
+					<h:outputText value="123" />
+				</p:column>
+
+				<p:column headerText="Nome">
+					<h:outputText value="Bala de morango" />
+				</p:column>
+
+				<p:column headerText="Categoria">
+					<h:outputText value="Doces - balas e chicletes" />
+				</p:column>
+
+				<p:column headerText="Valor Unitário" width="150"
+					style="text-align:right">
+					<h:outputText value="R$ 1,20" />
+				</p:column>
+
+				<p:column headerText="Estque" style="text-align:center" width="100">
+					<h:outputText value="98" />
+				</p:column>
+
+				<p:column headerText="Opções" style="text-align:center" width="150">
+					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:commandButton icon="ui-icon-trash" title="Remover">
+						<p:confirm header="Confirmação" message="Deseja excluir o produto?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<!-- Abaixo apenas os botãos "Sim" e "Não" -->
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+		</h:form>
 	</ui:define>
 </ui:composition>

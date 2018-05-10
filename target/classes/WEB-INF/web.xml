@@ -9,7 +9,7 @@
 	
 	<!-- Página inicial do projeto -->
 	<welcome-file-list>
-		<welcome-file>home.xhtml</welcome-file>
+		<welcome-file>pages/home.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<!-- Estágio do Projeto (JSF) -->

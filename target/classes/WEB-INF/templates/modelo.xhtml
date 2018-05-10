@@ -24,39 +24,54 @@
 		</f:facet>
 
 	</p:ajaxStatus>
-	<div id="geral">
-		<div id="topo" class="divTopo">
-			<p:graphicImage library="images" name="banner.png" />
-		</div>
+	
+	<div style="float: right; margin-right: 110px">
+		<span style="float: left; height: 30px; line-height: 30px; margin-right: 60px">
+				Olá usuário!
+		</span>
+		
+		<h:form style="display: inline-block">
+			<p:menubar styleClass="menu-sistema">
+				<p:submenu label="Cadastros">
+					<p:menuitem value="Clientes" />
+					<p:menuitem value="Usuários" />
+					<p:separator />
+					<p:menuitem value="Categorias" />
+					<p:menuitem value="Produtos" outcome="/produtos/pesquisarProduto" />
+				</p:submenu>
+				<p:submenu label="Pedidos">
+					<p:menuitem value="Novo pedido" outcome="/pedidos/cadastrarPedido" />
+					<p:menuitem value="Pesquisa" outcome="/pedidos/pesquisarPedido" />
+				</p:submenu>
+				<p:menuitem value="Sair" />
+			</p:menubar>
+		</h:form>
 	</div>
+	
+	<div style="clear: both"></div>
+	
 	<div id="conteudo">
 		<ui:insert name="corpo" />
 	</div>
+
+
+
+	<!-- Script para alterar a moeda para padrão brasileiro-->
 	<script>
 		function configurarMoeda() {
 			$(".moeda").maskMoney({ decimal: ",", thousands: ".", allowZero: true });
 		}
-		
 		$(document).ready(function() {
 			configurarMoeda();
 		});
 	</script>
+
+	<p:separator style="margin-top: 20px" />
+		Sistema desenvolvido por Rodrigo Moreira Carvalho - 
+		<a href="https://www.linkedin.com/in/rodrigo-moreira-b9260b68/"
+		target="_blank">Contato</a>
+
 </h:body>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </html>
+

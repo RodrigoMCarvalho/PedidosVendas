@@ -80,30 +80,22 @@
 				<p:column headerText="Opções" style="text-align:center" width="100">
 					<p:column headerText="Opções" style="text-align:center" width="150">
 						<p:button icon="ui-icon-pencil" title="Editar" />
-						<p:commandButton icon="ui-icon-trash" title="Remover" />
+						<p:commandButton icon="ui-icon-trash" title="Remover">
+							<p:confirm header="Confirmação" message="Deseja excluir o pedido?"
+								icon="ui-icon-alert" />
+						</p:commandButton>
 					</p:column>
 				</p:column>
 
 			</p:dataTable>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+			<!-- Abaixo apenas os botãos "Sim" e "Não" -->
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
 
 		</h:form>
 	</ui:define>
