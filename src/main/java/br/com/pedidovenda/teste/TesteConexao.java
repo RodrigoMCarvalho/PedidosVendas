@@ -13,9 +13,10 @@ public class TesteConexao {
 	
 	public static void main(String[] args) {
 		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("PedidoPU");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("Venda");
 		EntityManager manager = factory.createEntityManager();
 		
+		try {
 		EntityTransaction transacao = manager.getTransaction();
 		transacao.begin();
 		
@@ -28,7 +29,12 @@ public class TesteConexao {
 		manager.persist(cliente);
 		
 		transacao.commit();
-		
-		System.out.println("teste");
+		} catch (Exception e) {
+			manager.getTransaction().rollback();
+		} finally {
+			if (manager.isOpen()) {
+				manager.close();
+			}
+		}
 	}
 }
