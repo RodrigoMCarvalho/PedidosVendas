@@ -4,26 +4,45 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 
 @Entity
+@Table(name = "cliente")
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(nullable = false, length = 100)
 	private String nome;
+	
+	@Column(nullable = false)
 	private String email;
+	
+	@Column(name = "doc_receita_federal", nullable = false, length = 14)
 	private String documentoReceitaFederal;
+	
+	@Enumerated(EnumType.STRING) //será salvo o nome da enumeração(FISICA ou JURIDICA)
+	@Column(nullable = false, length = 10)
 	private TipoPessoa tipo;
 	
-	@Transient
+	
+	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL) //referente ao atributo cliente na entidade Endereco
 	private List<Endereco> enderecos = new ArrayList<>();
+	
 	
 	public String getNome() {
 		return nome;

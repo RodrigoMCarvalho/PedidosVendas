@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import br.com.pedidovenda.model.Cliente;
+import br.com.pedidovenda.model.Endereco;
 import br.com.pedidovenda.model.TipoPessoa;
 
 public class TesteConexao {
@@ -26,11 +27,23 @@ public class TesteConexao {
 		cliente.setDocumentoReceitaFederal("555.555.555-55");
 		cliente.setTipo(TipoPessoa.FISICA);
 		
+		Endereco endereco = new Endereco();
+		endereco.setCep("20000-100");
+		endereco.setCidade("Rio de janeiro");
+		endereco.setCliente(cliente);
+		endereco.setLogradouro("Rua Qualquer");
+		endereco.setNumero("10");
+		endereco.setUf("RJ");
+		
+		cliente.getEnderecos().add(endereco);
+		
 		manager.persist(cliente);
 		
 		transacao.commit();
+		
 		} catch (Exception e) {
 			manager.getTransaction().rollback();
+			e.printStackTrace();
 		} finally {
 			if (manager.isOpen()) {
 				manager.close();
