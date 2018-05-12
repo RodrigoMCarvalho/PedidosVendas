@@ -44,7 +44,7 @@
 
 	<!-- Dependências -->
 	<dependencies>
-	
+
 		<!-- JPA/Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
