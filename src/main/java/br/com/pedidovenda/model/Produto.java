@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import br.com.pedidovenda.validation.SKU;
+
 @Entity
 @Table(name = "produto")
 public class Produto implements Serializable {
@@ -27,7 +29,6 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	
 	@Column(nullable = false, length = 150)
 	@Size(max = 80, message = "O máximo permitido no campo Nome são 80 caracteres.")
 	@NotBlank(message = "O campo Nome é obrigatório.")
@@ -35,6 +36,7 @@ public class Produto implements Serializable {
 	
 	@Column(nullable = false, length = 20, unique = true)
 	@NotBlank(message = "O campo SKU é obrigatório.")
+	@SKU
 	private String sku;
 	
 	@Column(nullable = false, name = "valor_unitario", precision = 10, scale = 2)
@@ -42,7 +44,7 @@ public class Produto implements Serializable {
 	private BigDecimal valorUnitario;
 	
 	@Column(nullable = false, length = 5, name = "quantidade_estoque")
-	@NotNull(message = "O campo Estoque é obrigatório.")
+	@NotNull(message = "O campo Estoque é obrigatório.") 
 	@Min(value = 1, message = "Informe um valor maior que 0." )
 	private Integer quantidadeEstoque;
 	
