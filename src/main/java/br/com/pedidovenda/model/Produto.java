@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "produto")
@@ -22,20 +27,28 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	
 	@Column(nullable = false, length = 150)
+	@Size(max = 80, message = "O máximo permitido no campo Nome são 80 caracteres.")
+	@NotBlank(message = "O campo Nome é obrigatório.")
 	private String nome;
 	
 	@Column(nullable = false, length = 20, unique = true)
+	@NotBlank(message = "O campo SKU é obrigatório.")
 	private String sku;
 	
 	@Column(nullable = false, name = "valor_unitario", precision = 10, scale = 2)
+	@NotNull(message = "O campo Valor Unitário é obrigatório.")
 	private BigDecimal valorUnitario;
 	
 	@Column(nullable = false, length = 5, name = "quantidade_estoque")
+	@NotNull(message = "O campo Estoque é obrigatório.")
+	@Min(value = 1, message = "Informe um valor maior que 0." )
 	private Integer quantidadeEstoque;
 	
 	@ManyToOne
 	@JoinColumn(nullable = false)
+	@NotNull(message = "A categoria é obrigatória.")
 	private Categoria categoria;
 
 	public Long getId() {

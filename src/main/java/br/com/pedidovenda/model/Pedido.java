@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pedido")
@@ -33,23 +34,28 @@ public class Pedido implements Serializable {
 	private Long id;
 	
 	@Column(name = "data_criacao", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)  //será salvo no BD a data e hora
+	@NotNull
 	private Date dataCriacao;
 	
 	@Column(columnDefinition = "text")
 	private String observacao;
 	
 	@Column(name = "data_entrega", nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE)   //será salvo no BD somente a data
+	@NotNull
 	private Date dataEntrega;
 	
 	@Column(name = "valor_frete", nullable = false, precision = 10, scale = 2)
+	@NotNull
 	private BigDecimal valorFrete;
 	
 	@Column(name = "valor_desconto", nullable = false, precision = 10, scale = 2)
+	@NotNull
 	private BigDecimal valorDesconto;
 	
 	@Column(name = "valor_total", nullable = false, precision = 10, scale = 2)
+	@NotNull
 	private BigDecimal valorTotal;
 	
 	@Enumerated(EnumType.STRING) //será salvo o nome da enumeração(ORCAMENTO, EMITIDO ou CANCELADO)
@@ -58,14 +64,17 @@ public class Pedido implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "forma_pagamento", nullable = false, length = 20)
+	@NotNull(message = "A forma de pagamento deverá ser informado.")
 	private FormaPagamento formaPagamento;
 	
 	@ManyToOne
 	@JoinColumn(name = "vendedor_id", nullable = false)
+	@NotNull(message = "O vendedor deverá ser informado.")
 	private Usuario vendedor;
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id", nullable = false)
+	@NotNull(message = "O cliente deverá ser informado.")
 	private Cliente cliente;
 	
 	@Embedded //embutido
